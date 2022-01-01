@@ -24,16 +24,14 @@ class ExampleMod : Mod() {
 			dialog.closeOnBack()
 			 
 			dialog.cont.apply {
-				label(info).marginBottom(20f).row()
+				addLabel(info).marginBottom(20f).row()
 				
-				addTable {
+				buttonGroup {
 					defaults().width(120f)
-					
-					val group = ButtonGroup<TextButton>()
 					
 					textButton("info", Styles.togglet) {
 						dialog.cont.childAs<Label>(0).setText(info)
-					}.group(group)
+					}
 					
 					textButton("about us", Styles.togglet) {
 						dialog.cont.childAs<Label>(0).setText("""
@@ -42,7 +40,7 @@ class ExampleMod : Mod() {
 							Discord: @Mnemotechnician#9967
 							Github: https://github.com/Mnemotechnician
 						""".trimIndent())
-					}.group(group)
+					}
 				}.marginBottom(60f).row()
 				
 				textButton("close", Styles.nodet) { dialog.hide() }.width(240f)

@@ -36,7 +36,7 @@ dependencies {
 	
 	//example of a library dependency. if you don't need it, remove this line.
 	//(note: this is not a mod, rather a library for mindustry mods, thus it should be added as an implementation)
-	implementation("com.github.mnemotechnician:mkui:snapshot-3")
+	implementation("com.github.mnemotechnician:mkui:snapshot-4")
 }
 
 /*
