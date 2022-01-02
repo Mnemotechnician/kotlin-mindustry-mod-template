@@ -24,5 +24,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ github.event.repository.name }}-zipped
-          path: mod-src/build/libs/${{ jarName }}-any-platform.jar
+          path: mod-src/build/libs/$jarName-any-platform.jar
         
