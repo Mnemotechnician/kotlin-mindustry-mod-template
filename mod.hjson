@@ -5,5 +5,7 @@ author: "Мнемотехник"
 minGameVersion: "135"
 version: "1.0"
 
+#main class of your mod. MUST extend mindustry.mod.Mod. If it doesn't exist or doesn't extend Mod, the game will ignore this mod
 main: "com.github.mnemotechnician.kmmt.ExampleMod"
-
+#set to true in order to make this mod multiplayer-compatible. note that any new content added by the mod will not work in multiplayer: it will only cause desync.
+hidden: false
