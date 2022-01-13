@@ -4,7 +4,7 @@
  */
 
 plugins {
-	id("org.jetbrains.kotlin.jvm") version "1.6.10"
+	kotlin("jvm") version "1.6.10"
 	
 	/**
 	 * Uncomment this line and the "publications" block below if you want to publish to maven. 
@@ -28,8 +28,7 @@ dependencies {
 	 * You can add your mod dependencies in this block.
 	 * NEVER ADD MINDUSTRY, ARC AND NON-LIBRARY MODS AS IMPLEMENTATION DEPENDENCIES! Use compileOnly instead (and add a dependency in mod.hjson if it's a mod)
 	*/
-	implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
-	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	implementation(kotlin("stdlib-jdk8"))
 	
 	compileOnly("com.github.Anuken.Arc:arc-core:$mindustryVersion")
 	compileOnly("com.github.Anuken.Mindustry:core:$mindustryVersion")
@@ -110,10 +109,8 @@ task<Jar>("release") {
 	)
 
 	doLast {
-		delete {
-			delete("$buildDir/libs/${jarName}-desktop.jar")
-			delete("$buildDir/libs/${jarName}-android.jar")
-		}
+		delete { delete("$buildDir/libs/${jarName}-desktop.jar") }
+		delete { delete("$buildDir/libs/${jarName}-android.jar") }
 	}
 }
 
