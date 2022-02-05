@@ -19,16 +19,22 @@ class ExampleMod : Mod() {
 	""".trimIndent()
 
 	init {
+		//when client load event is fired (that happens only once),
 		Events.on(EventType.ClientLoadEvent::class.java) {
+			//create a dialog,
 			val dialog = BaseDialog("This is an example mod")
+			//make the dialog close when the player presses escape / back key
 			dialog.closeOnBack()
 			 
 			dialog.cont.apply {
+				//add an info label
 				addLabel(info).marginBottom(20f).row()
 				
+				//and a button group...
 				buttonGroup {
 					defaults().width(120f)
 					
+					//containing two buttons that put different messages on the label
 					textButton("info", Styles.togglet) {
 						dialog.cont.childAs<Label>(0).setText(info)
 					}
@@ -43,6 +49,7 @@ class ExampleMod : Mod() {
 					}
 				}.marginBottom(60f).row()
 				
+				//and don't forget to add a close button to the dialog
 				textButton("close", Styles.nodet) { dialog.hide() }.width(240f)
 			}
 			

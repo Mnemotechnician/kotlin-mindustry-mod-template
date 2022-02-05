@@ -4,10 +4,9 @@ My own template. Differs from the official template, uses kotlin gradle dsl.
 # If you're going to use this template, make sure you follow these steps:
 - [ ] Change the root project name in [settings.gradle.kts](settings.gradle.kts)
 - [ ] Read the comments in [build.gradle.kts](mod-src/build.gradle.kts) and perform any required modifications
-- [ ] Rename [the source code folders](mod-src/src/main/kotlin). For example, if you're using the github-based naming convention, `com/github/mnemotechnician/kmmt` should become `com/github/YOUR_USER_NAME/YOUR_REPO_OR_MOD_NAME`. You may want to use a different convention.
-- [ ] Change the package path of the example mod class
-- [ ] Change values in [mod.hjson](mod.hjson) to whatever you want
-- [ ] After uploading the mod to github, add `mindustry-mod`, `mindustry-mod-v6` or `mindustry-mod-v7` to the repository topics in order for your mod to appear in the mod browser
+- [ ] Change the package name of the [main mod class](mod-src/src/main/kotlin/ExampleMod.kt). For example, if you're using the github-based naming convention, `com.github.mnemotechnician.kmmt` should become `com.github.YOUR_USER_NAME.YOUR_REPO_OR_MOD_NAME`. You may want to use a different convention, tho.
+- [ ] Change the values in [mod.hjson](mod.hjson)
+- [ ] After uploading the mod to github, add `mindustry-mod` + `mindustry-mod-v6` or `mindustry-mod-v7` to the repository topics in order for your mod to appear in the mod browser
 
 # Building
 ## Via github actions (this is the best variant for beginners)
@@ -35,7 +34,7 @@ Now, you can compile either for desktop only or for both mobile and desktop
 ## Building a multiplatform jar
 * Run `./gradlew release`
 
-It will warn you that several `java.util.`, `java.time.` and `java.nio.` classes that kotlin sdk depends on are missing but you shouldn't care about that: android doesn't support them. You shouldn't be using them at all: arc provides alternatives for these classes.
+It may warn you that several `java.util.`, `java.time.` and `java.nio.` classes that kotlin sdk depends on are missing but you shouldn't care about that: android sdk < 30 doesn't support them. You shouldn't be using them at all: arc provides alternatives for these classes.
 
 In case of succeful building a jar file named `compiled-mod-any-platform.jar` (the name depends on jarName string defined in [build.gradle.kts](mod-src/build.gradle.kts)) will appear in [mod-src/build/libs/](mod-src/build/libs/).
 This file can be used both on android and on desktop.
@@ -45,4 +44,4 @@ This file can be used both on android and on desktop.
 
 Everything is similar to the previous paragraph, except that the file will be named `compiled-mod-desktop.jar` and will __only be usable on desktop__.
 
-***__You should never upload this file as a release. At least a public one. There's a lot of mobile users in the community and they won't be able to use your mod at all: it will be installable but will not load__***
+***__You should never upload this file as a release. At least a public one. There's a lot of mobile users in the community and they won't be able to use your mod at all: it will install but will not load__***
