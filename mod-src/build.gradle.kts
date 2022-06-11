@@ -1,10 +1,12 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 /*
  * This file allows you to configure the compilation process of your mod
  * There's several comments that you should read & follow in order to make everything work correctly
  */
 
 plugins {
-	kotlin("jvm") version "1.6.10"
+	kotlin("jvm") version "1.7.0"
 	
 	/**
 	 * Uncomment this line and the "publications" block below if you want to publish to maven. 
@@ -36,6 +38,13 @@ dependencies {
 	//example of a library dependency. if you don't need it, remove this line.
 	//(note: this is not a mod, it's a library for mindustry mods, thus it should be added as an implementation dependency.
 	implementation("com.github.mnemotechnician:mkui:33")
+}
+
+tasks.withType<KotlinCompile> {
+	kotlinOptions {
+		// use the experimental kotlin compiler, which is better than the old one.
+		freeCompilerArgs += "-Xuse-k2"
+	}
 }
 
 /*
@@ -92,7 +101,7 @@ task("jarAndroid") {
 		
 		
 		//collect dependencies needed to translate java 8 bytecode code to android-compatible bytecode (yeah, android's dvm and art do be sucking)
-		val dependencies = (configurations.compileClasspath.files + configurations.runtimeClasspath.files + File(platformRoot, "android.jar")).map { it.path }
+		val dependencies = (configurations.compileClasspath.get().files + configurations.runtimeClasspath.files + File(platformRoot, "android.jar")).map { it.path }
 		val dependenciesStr = Array<String>(dependencies.size * 2) {
 			if (it % 2 == 0) "--classpath" else dependencies.elementAt(it / 2)
 		}
