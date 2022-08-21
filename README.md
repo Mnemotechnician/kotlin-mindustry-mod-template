@@ -34,7 +34,7 @@ Now, you can compile either for desktop only or for both mobile and desktop
 ## Building a multiplatform jar
 * Run `./gradlew release`
 
-It may warn you that several `java.util.`, `java.time.` and `java.nio.` classes that kotlin sdk depends on are missing but you shouldn't care about that: android sdk < 30 doesn't support them. You shouldn't be using them at all: arc provides alternatives for these classes.
+If you're using an old sdk, it may warn you that several `java.util.`, `java.time.` and `java.nio.` classes that kotlin sdk depends on are missing but you shouldn't care about that: android sdk < 30 doesn't support them. You shouldn't be using them at all: arc provides alternatives for these classes.
 
 In case of succeful building a jar file named `compiled-mod-any-platform.jar` (the name depends on jarName string defined in [build.gradle.kts](mod-src/build.gradle.kts)) will appear in [mod-src/build/libs/](mod-src/build/libs/).
 This file can be used both on android and on desktop.

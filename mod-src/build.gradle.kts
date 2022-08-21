@@ -17,7 +17,7 @@ plugins {
 
 /** The mindustry version this mod will be compiled for. You may want to use another version, e.g. "v126" or "v145" (when it'll come out) */
 val mindustryVersion = "v135"
-/** The output jar files will contain this string in their names. If you're going to modify it, you should also modify the name in project_dir/.github/workflows/build.yml */
+/** The output jar files will contain this string in their names. */
 val jarName = "compiled-mod"
 
 repositories {
