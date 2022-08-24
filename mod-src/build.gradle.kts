@@ -1,12 +1,10 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 /*
- * This file allows you to configure the compilation process of your mod
+ * This file allows you to configure the compilation process of your mod.
  * There's several comments that you should read & follow in order to make everything work correctly
  */
 
 plugins {
-	kotlin("jvm") version "1.7.0"
+	kotlin("jvm") version "1.7.20-Beta"
 	
 	/**
 	 * Uncomment this line and the "publications" block below if you want to publish to maven. 
@@ -15,36 +13,17 @@ plugins {
 	//`maven-publish`
 }
 
-/** The mindustry version this mod will be compiled for. You may want to use another version, e.g. "v126" or "v145" (when it'll come out) */
-val mindustryVersion = "v135"
 /** The output jar files will contain this string in their names. */
 val jarName = "compiled-mod"
 
-repositories {
-	mavenCentral()
-	maven("https://jitpack.io")
-}
-
 dependencies {
 	/*
-	 * You can add your mod dependencies in this block.
-	 * NEVER ADD MINDUSTRY, ARC AND NON-LIBRARY MODS AS IMPLEMENTATION DEPENDENCIES! Use compileOnly instead (and add a dependency in mod.hjson if it's a mod)
+	 * You can add your mod-specific dependencies in this block.
+	 * These will not affect other modules, if you have any.
+	 * For example, if you have another module in your project and you want to include it in this one.
+	 * use `implementation(project("project-name"))`
+	 * See the top-level gradle buildscript if you want to modify the mindustry/arc deps.
 	*/
-	implementation(kotlin("stdlib-jdk8"))
-	
-	compileOnly("com.github.Anuken.Arc:arc-core:$mindustryVersion")
-	compileOnly("com.github.Anuken.Mindustry:core:$mindustryVersion")
-	
-	//example of a library dependency. if you don't need it, remove this line.
-	//(note: this is not a mod, it's a library for mindustry mods, thus it should be added as an implementation dependency.
-	implementation("com.github.mnemotechnician:mkui:33")
-}
-
-tasks.withType<KotlinCompile> {
-	kotlinOptions {
-		// use the experimental kotlin compiler, which is better than the old one.
-		freeCompilerArgs += "-Xuse-k2"
-	}
 }
 
 /*

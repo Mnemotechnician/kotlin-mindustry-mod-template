@@ -6,7 +6,8 @@ import mindustry.mod.*
 import mindustry.game.*
 import mindustry.ui.*
 import mindustry.ui.dialogs.*
-import com.github.mnemotechnician.mkui.*
+import com.github.mnemotechnician.mkui.extensions.dsl.*
+import com.github.mnemotechnician.mkui.extensions.groups.*
 
 class ExampleMod : Mod() {
 
@@ -36,11 +37,11 @@ class ExampleMod : Mod() {
 					
 					//containing two buttons that put different messages on the label
 					textButton("info", Styles.togglet) {
-						dialog.cont.childAs<Label>(0).setText(info)
+						dialog.cont.child<Label>(0).setText(info)
 					}
 					
 					textButton("about us", Styles.togglet) {
-						dialog.cont.childAs<Label>(0).setText("""
+						dialog.cont.child<Label>(0).setText("""
 							[Kotlin] Mindustry Mod Template by Mnemotechnician
 							
 							Discord: @Mnemotechnician#9967
@@ -50,7 +51,7 @@ class ExampleMod : Mod() {
 				}.marginBottom(60f).row()
 				
 				//and don't forget to add a close button to the dialog
-				textButton("close", Styles.nodet) { dialog.hide() }.width(240f)
+				textButton("close") { dialog.hide() }.width(240f)
 			}
 			
 			dialog.show()
