@@ -17,7 +17,7 @@ author: "Мнемотехник"
 # the minimum major game version required for this mod to work. note that mods with MGV outside the 104..135 range will not work in v6.
 minGameVersion: "137"
 # mod version displayed in the mod browser / list
-version: "1.0"
+version: "2.0"
 
 # the full name of the main class of your mod, e.g. "your.class.package.YourClassName".
 # the class MUST extend "mindustry.mod.Mod". If this class doesn't exist or doesn't extend Mod, the whole mod will be ignored.
