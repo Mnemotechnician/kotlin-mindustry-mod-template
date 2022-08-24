@@ -14,8 +14,8 @@ This mod doesn't add anything to the game, nor does it change anything.
 displayName: "[Kotlin] Mindustry Mod Template"
 # author name displayed in the mod browser / list
 author: "Мнемотехник"
-# the minimum major game version required for this mod to work. note that mods with MGV <= 104 will not work in v6.
-minGameVersion: "135"
+# the minimum major game version required for this mod to work. note that mods with MGV outside the 104..135 range will not work in v6.
+minGameVersion: "137"
 # mod version displayed in the mod browser / list
 version: "1.0"
 
