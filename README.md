@@ -40,7 +40,7 @@ In case of succeful building a jar file named `compiled-mod-any-platform.jar` (t
 This file can be used both on android and on desktop.
 
 ## Building a desktop-only jar
-* Run `./gradlew jar`
+* Run `./gradlew jarDesktop`
 
 Everything is similar to the previous paragraph, except that the file will be named `compiled-mod-desktop.jar` and will __only be usable on desktop__.
 

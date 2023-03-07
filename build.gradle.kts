@@ -9,7 +9,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
 	// when modifying the version of this plugin, you must also modify the version in other buildscripts:
 	// all modules must share the same version or the compilation will fail
-	kotlin("jvm") version "1.7.20-Beta"
+	kotlin("jvm") version "1.8.0"
 }
 
 allprojects {
@@ -31,16 +31,19 @@ allprojects {
 		// in addiction, never declare mindustry, arc and other mods (not libraries) as implementation deps!
 		// this will greatly increase the size of your mod and will most likely break something at runtime!
 		
-		implementation(kotlin("stdlib-jdk8"))
 		// arc dependency
-		compileOnly("com.github.Anuken.Arc:arc-core:v137")
+		compileOnly("com.github.Anuken.Arc", "arc-core", "v141")
 		// mindustry dependency.
 		// jitpack refuses to compile mindustry due to its repository size, thus we're using a mirror
-		// 74a0321db8 is the hash of a commit, you can replace it with a different one or a specific version (e.g. v137)
-		compileOnly("com.github.Anuken:MindustryJitpack:74a0321db8")
+		compileOnly("com.github.Anuken", "MindustryJitpack", "v141")
 		//example of a library dependency. if you don't need it, remove this line.
 		//(note: this is not a mod, it's a library for mindustry mods, thus it should be added as an implementation dependency.
-		implementation("com.github.mnemotechnician:mkui:v1.1")
+		implementation("com.github.mnemotechnician", "mkui", "v1.2.1")
+	}
+
+	tasks.withType<JavaCompile> {
+		sourceCompatibility = "1.8"
+		targetCompatibility = "1.8"
 	}
 
 	tasks.withType<KotlinCompile> {
