@@ -214,7 +214,6 @@ task<Jar>("release") {
 	from(*configurations.runtimeClasspath.get().files.map { if (it.isDirectory()) it else zipTree(it) }.toTypedArray())
 
 	doLast {
-		delete { delete("$buildDir/libs/${jarName}.jar") }
 		delete { delete("$buildDir/libs/${jarName}-android.jar") }
 	}
 }
