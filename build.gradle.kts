@@ -18,9 +18,13 @@ allprojects {
 
 	repositories {
 		// Repositories to download dependencies from.
-		// Do not remove anything other than mavenLocal unless you knoa what you're doing
+		// Do not remove anything other than mavenLocal unless you know what you're doing
 		mavenCentral()
 		mavenLocal()
+		// Needed, as jitpack is now practically incapable of compiling mindustry
+		// due to it's repository size.
+		// However, jitpack is still kept for arc and for any custom libraries.
+		maven("https://raw.githubusercontent.com/Zelaux/MindustryRepo/master/repository")
 		maven("https://jitpack.io")
 	}
 
@@ -28,16 +32,16 @@ allprojects {
 		// be cautious: dependencies applied here are applied to every submodule
 		// never insert local project dependencies (e.g. implementation(project(":another-module"))).
 
-		// in addiction, never declare mindustry, arc and other mods (not libraries) as implementation deps!
-		// this will greatly increase the size of your mod and will most likely break something at runtime!
+		// in addition, never declare mindustry, arc and other mods (except libraries) as implementation deps!
+		// mindustry itself will refuse importing the mod if it sees that it contains the mindustry dependency.
 		
 		// arc dependency
-		compileOnly("com.github.Anuken.Arc", "arc-core", "v141")
+		compileOnly("com.github.Anuken.Arc", "arc-core", "v146")
 		// mindustry dependency.
-		// jitpack refuses to compile mindustry due to its repository size, thus we're using a mirror
-		compileOnly("com.github.Anuken", "MindustryJitpack", "v141")
+		// versions lower than v145.1 cannot be used as MindustryRepo started on that version
+		compileOnly("com.github.Anuken", "Mindustry", "v146")
 		//example of a library dependency. if you don't need it, remove this line.
-		//(note: this is not a mod, it's a library for mindustry mods, thus it should be added as an implementation dependency.
+		//(note: this is not a mod, it's a library for mindustry mods, thus it should be added as an implementation dependency.)
 		implementation("com.github.mnemotechnician", "mkui", "v1.2.1")
 	}
 

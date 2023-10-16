@@ -6,7 +6,7 @@ My own template. Differs from the official template, uses kotlin gradle dsl.
 - [ ] Read the comments in both gradle buildscripts ([first](build.gradle.kts), [second](mod-src/build.gradle.kts)) and perform any required modifications
 - [ ] Change the package name of the [main mod class](mod-src/src/main/kotlin/ExampleMod.kt). For example, if you're using the github-based naming convention, `com.github.mnemotechnician.kmmt` should become `com.github.YOUR_USER_NAME.YOUR_REPO_OR_MOD_NAME`. You may want to use a different convention, tho.
 - [ ] Change the values in [mod.hjson](mod.hjson)
-- [ ] After uploading the mod to github, add `mindustry-mod` + `mindustry-mod-v6` or `mindustry-mod-v7` to the repository topics in order for your mod to appear in the mod browser
+- [ ] After uploading the mod to github, add `mindustry-mod` to the repository topics in order for your mod to appear in the mod browser
 
 # Building
 ## Via github actions (this is the best variant for beginners)
@@ -36,7 +36,7 @@ Now, you can compile either for desktop only or for both mobile and desktop
 
 If you're using an old sdk, it may warn you that several `java.util.`, `java.time.` and `java.nio.` classes that kotlin sdk depends on are missing but you shouldn't care about that: android sdk < 30 doesn't support them. You shouldn't be using them at all: arc provides alternatives for these classes.
 
-In case of succeful building a jar file named `compiled-mod-any-platform.jar` (the name depends on jarName string defined in [build.gradle.kts](mod-src/build.gradle.kts)) will appear in [mod-src/build/libs/](mod-src/build/libs/).
+In case of successful building a jar file named `compiled-mod-any-platform.jar` (the name depends on jarName string defined in [build.gradle.kts](mod-src/build.gradle.kts)) will appear in [mod-src/build/libs/](mod-src/build/libs/).
 This file can be used both on android and on desktop.
 
 ## Building a desktop-only jar

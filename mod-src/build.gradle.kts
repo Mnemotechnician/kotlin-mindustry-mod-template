@@ -20,6 +20,9 @@ plugins {
 /** The output jar files will contain this string in their names. */
 val jarName = "compiled-mod"
 
+/** Windows sucks. */
+val windows = System.getProperty("os.name").contains("windows", true)
+
 dependencies {
 	/*
 	 * You can add your mod-specific dependencies in this block.
@@ -130,16 +133,19 @@ task("jarAndroid") {
 		println("${reusable.size} dependencies are already desugared and can be reused.")
 		if (needReDex.isNotEmpty()) println("Desugaring ${needReDex.size} dependencies.")
 
-		// for every non-reusable dependency, invoke d8 and save the new hash
+		// for every non-reusable dependency, invoke d8 (d8.bat for windows) and save the new hash
+
+		val d8 = if (windows) "d8.bat" else "d8"
+
 		var index = 1
 		needReDex.forEach { (dependency, hash) ->
 			println("Processing ${index++}/${needReDex.size} ($dependency)")
 
-			val outputDir = dexCacheRoot.resolve(hash(dependency.toByteArray())).also { it.mkdir() }
+			val outputDir = dexCacheRoot.resolve(hash(dependency.toByteArray()).replace("==", "")).also { it.mkdir() }
 			exec {
 				errorOutput = OutputStream.nullOutputStream()
 				commandLine(
-					"d8",
+					d8,
 					"--intermediate",
 					"--classpath", "${platformRoot.absolutePath}/android.jar",
 					"--min-api", "14", 
@@ -172,7 +178,7 @@ task("jarAndroid") {
 		exec {
 			val output = dexCacheRoot.resolve("project").also { it.mkdirs() }
 			commandLine(
-				"d8", 
+				d8,
 				*dependenciesStr,
 				"--classpath", "${platformRoot.absolutePath}/android.jar",
 				"--min-api", "14",
@@ -190,7 +196,7 @@ task("jarAndroid") {
 				.toTypedArray()
 
 			commandLine(
-				"d8",
+				d8,
 				*depDexes,
 				dexCacheRoot.resolve("project/classes.dex").absolutePath,
 				"--output", "$buildDir/libs/$jarName-android.jar"
@@ -198,6 +204,7 @@ task("jarAndroid") {
 		}
 	}
 }
+
 
 /** Merges the dektop and android jar files into a multiplatform jar file */
 task<Jar>("release") {
