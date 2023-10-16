@@ -21,7 +21,7 @@ plugins {
 val jarName = "compiled-mod"
 
 /** Windows sucks. */
-val windows = System.getProperty("os.name").lowercase().contains("windows")
+val windows = System.getProperty("os.name").contains("windows", true)
 
 dependencies {
 	/*
@@ -135,7 +135,7 @@ task("jarAndroid") {
 
 		// for every non-reusable dependency, invoke d8 (d8.bat for windows) and save the new hash
 
-		val d8 = if(windows) "d8.bat" else "d8"
+		val d8 = if (windows) "d8.bat" else "d8"
 
 		var index = 1
 		needReDex.forEach { (dependency, hash) ->
